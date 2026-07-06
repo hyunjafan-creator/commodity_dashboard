@@ -6,8 +6,6 @@ on:
     - cron: '0 5 * * *'    # 14:00 KST (05:00 UTC)
     - cron: '0 8 * * *'    # 17:00 KST (08:00 UTC)
   workflow_dispatch:        # 수동 실행 버튼
-  push:                     # (임시) 권한 테스트용 - 확인 후 제거
-    branches: [ main ]
 
 permissions:
   contents: write
