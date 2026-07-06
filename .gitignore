@@ -1,0 +1,23 @@
+# ===== 민감: 로그인 세션/프로필 (절대 업로드 금지) =====
+.pw_profile/
+.pw_profile_lipf6/
+.pw_state.json
+
+# ===== 디버그 덤프 / 로그 (계정명 등 포함 가능) =====
+*_debug.txt
+*_seg.txt
+*.log
+
+# ===== 리콘/임시 파일 =====
+komis_chart.json
+komis_crtr.json
+
+# ===== 파이썬 캐시 =====
+__pycache__/
+*.pyc
+
+# ===== 로컬 설정 =====
+.claude/
+
+# ===== 사용자 제공 DB (대용량) - 필요시 주석 해제해 포함 =====
+# semiconductor_data.db
