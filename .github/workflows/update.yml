@@ -1,0 +1,39 @@
+name: Update Dashboard
+
+on:
+  schedule:
+    - cron: '0 23 * * *'   # 08:00 KST (23:00 UTC 전날)
+    - cron: '0 5 * * *'    # 14:00 KST (05:00 UTC)
+    - cron: '0 8 * * *'    # 17:00 KST (08:00 UTC)
+  workflow_dispatch:        # 수동 실행 버튼
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-dashboard
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # 데이터 수집 + 대시보드 생성 (stdlib만 사용).
+      # LiPF6/TOPCon은 로그인 세션/브라우저가 필요해 클라우드에선 자동 건너뜀 → 로컬 PC가 보강.
+      - name: Collect data and build dashboard
+        run: python run.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "cloud auto-update" || { echo "no changes"; exit 0; }
+          git pull --no-edit -X ours origin main || true
+          git push

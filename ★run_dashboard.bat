@@ -14,6 +14,7 @@ echo   Uploading to GitHub (web dashboard)...
 echo ------------------------------------------------------------
 git add -A
 git commit -m "update dashboard" || echo (no changes to commit)
+git pull --no-edit -X ours origin main
 git push
 echo.
 echo ============================================================
