@@ -19,6 +19,6 @@ echo.
 echo ============================================================
 echo   [DONE]
 echo   Local :  Commodity_dashboard.html   (open, press F5)
-echo   Web   :  https://hyunjafan-creator.github.io/hyunjaeyy/
+echo   Web   :  https://hyunjafan-creator.github.io/commodity_dashboard/
 echo ============================================================
 pause
