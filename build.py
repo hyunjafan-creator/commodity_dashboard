@@ -186,7 +186,7 @@ HTML = """<!DOCTYPE html>
 <header>
   <h1>📊 원자재 대시보드</h1>
   <div class="updated">🕒 마지막 업데이트 : __UPDATED__</div>
-  <div class="meta">차트 기간: 선물 최근 __WINDOW__영업일 · 반도체/희소금속 전체기간 · 30분마다 자동 새로고침</div>
+  <div class="meta">차트 기간: 선물 최근 __WINDOW__영업일 · 반도체/희소금속 전체기간 · 매일 08·14·17시 자동 새로고침</div>
   <nav>__NAV__</nav>
 </header>
 __BODY__
