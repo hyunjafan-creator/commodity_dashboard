@@ -12,7 +12,7 @@ import json
 import os
 import re
 import sys
-from datetime import datetime, date, timedelta
+from datetime import datetime, date, timedelta, timezone
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
@@ -284,9 +284,10 @@ def build():
         body.append(f'<section class="cat" id="cat-{i}"><h2>{c}</h2>'
                     f'<div class="grid">{cards}</div></section>')
 
-    _now = datetime.now()
+    # 클라우드(UTC)에서 실행돼도 항상 한국시간(KST)으로 표시
+    _now = datetime.now(timezone(timedelta(hours=9)))
     _wd = ["월", "화", "수", "목", "금", "토", "일"][_now.weekday()]
-    updated = _now.strftime(f"%Y년 %m월 %d일 ({_wd}) %H:%M:%S")
+    updated = _now.strftime(f"%Y년 %m월 %d일 ({_wd}) %H:%M:%S (KST)")
     html = (HTML
             .replace("__UPDATED__", updated)
             .replace("__WINDOW__", str(WINDOW))
