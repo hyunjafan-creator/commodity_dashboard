@@ -188,6 +188,12 @@ def main():
                     print(f"  [ERR] {it['id']:9} {it['name'][:22]:22} {n}")
                     fail += 1
                 continue
+            if it["src"] == "eia":
+                import fetch_eia
+                n, last = fetch_eia.fetch()
+                print(f"  [OK ] {it['id']:9} {it['name'][:22]:22} {n}주 (최신 {last[0]} ${last[1]})")
+                ok += 1
+                continue
             if it["src"] == "sina":
                 n = merge_ohlc(it["id"], fetch_sina(it["sym"]))
                 print(f"  [OK ] {it['id']:9} {it['name'][:22]:22} {n} rows")

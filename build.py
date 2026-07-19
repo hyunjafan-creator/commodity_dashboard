@@ -84,8 +84,8 @@ def build_payload():
             out.append(p)
             continue
 
-        if it["src"] == "komis":
-            # 일별 라인 (date= 'YYYY-MM-DD', value). 최근 3년 전체 표시.
+        if it["src"] in ("komis", "eia"):
+            # 라인 (date= 'YYYY-MM-DD', value). 최근 3년 전체 표시(일별/주간).
             if not rows:
                 p.update(type="empty")
                 out.append(p)
