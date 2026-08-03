@@ -58,7 +58,7 @@ ITEMS = [
     dict(id="eia_gas", cat="에너지", name="미국 소매 휘발유 (전등급, 주간)", src="eia", sym="",
          unit="USD/갤런",
          source="EIA · Weekly U.S. All Grades All Formulations Retail Gasoline Prices",
-         note="주간·갱신 기준 최근 3년"),
+         note="주간 데이터 · EIA 매주 발표(당일값 아님, 최신 주간값 표시) · 최근 3년"),
     dict(id="gasoil", cat="에너지", name="런던 가스오일", src="snap", sym="gasoil",
          unit="USD/톤", source="ICE Gas Oil (영국)",
          note="무료 데이터 소스 없음 — 별도 수집 연동 필요."),
@@ -112,19 +112,19 @@ ITEMS = [
     # ── 7. 희소금속 (KOMIS · 월별 · 최근 3년) ───────────────────
     dict(id="komis_w", cat="희소금속", name="텅스텐 (Ferro-tungsten 75%)", src="komis",
          sym="MNRL0018", crtr="796", spec="75", unit="USD/kg",
-         source="KOMIS 한국자원정보서비스 · Ferro-tungsten 75%min FOB China", note="일별·최근 3년"),
+         source="KOMIS 한국자원정보서비스 · Ferro-tungsten 75%min FOB China", note="일별·최근 3년 · KOMIS 공식통계라 발표 지연(당일값 아님, 보통 다음 영업일 반영)"),
     dict(id="komis_nd", cat="희소금속", name="네오디뮴 (Neodymium Oxide)", src="komis",
          sym="MNRL1001", crtr="757", spec="99.5", unit="USD/kg",
-         source="KOMIS 한국자원정보서비스 · Neodymium Oxide 99.5%min FOB China", note="일별·최근 3년"),
+         source="KOMIS 한국자원정보서비스 · Neodymium Oxide 99.5%min FOB China", note="일별·최근 3년 · KOMIS 공식통계라 발표 지연(당일값 아님, 보통 다음 영업일 반영)"),
     dict(id="komis_dy", cat="희소금속", name="디스프로슘 (Dysprosium Oxide)", src="komis",
          sym="MNRL1004", crtr="803", spec="99.5", unit="USD/kg",
-         source="KOMIS 한국자원정보서비스 · Dysprosium Oxide 99.5%min FOB China", note="일별·최근 3년"),
+         source="KOMIS 한국자원정보서비스 · Dysprosium Oxide 99.5%min FOB China", note="일별·최근 3년 · KOMIS 공식통계라 발표 지연(당일값 아님, 보통 다음 영업일 반영)"),
     dict(id="komis_ti", cat="희소금속", name="티타늄 (Ferro-titanium 70%)", src="komis",
          sym="MNRL0017", crtr="761", spec="70", unit="USD/kg",
-         source="KOMIS 한국자원정보서비스 · Ferro-titanium 70%min In warehouse Rotterdam", note="일별·최근 3년"),
+         source="KOMIS 한국자원정보서비스 · Ferro-titanium 70%min In warehouse Rotterdam", note="일별·최근 3년 · KOMIS 공식통계라 발표 지연(당일값 아님, 보통 다음 영업일 반영)"),
     dict(id="komis_mo", cat="희소금속", name="몰리브덴 (Ferro-molybdenum 60%)", src="komis",
          sym="MNRL0012", crtr="763", spec="60", unit="USD/mt",
-         source="KOMIS 한국자원정보서비스 · Ferro-molybdenum 60%min EXW China", note="일별·최근 3년"),
+         source="KOMIS 한국자원정보서비스 · Ferro-molybdenum 60%min EXW China", note="일별·최근 3년 · KOMIS 공식통계라 발표 지연(당일값 아님, 보통 다음 영업일 반영)"),
 ]
 
 CATEGORIES = ["반도체", "배터리", "에너지", "태양광", "화학/철강", "식료품", "희소금속"]
