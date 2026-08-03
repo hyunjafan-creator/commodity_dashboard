@@ -85,6 +85,27 @@ def append_snapshot3(item_id, high, low, avg):
 
 
 # ── 소스별 수집기 ───────────────────────────────────────────────
+def fetch_sina_rt(sym):
+    """실시간 시세로 '오늘 바' 1개 생성(장중 반영). dict 또는 None.
+    hq.sinajs.cn nf_ 필드: [2]시가 [3]고가 [4]저가 [8]현재가 [17]날짜."""
+    try:
+        raw = _get("https://hq.sinajs.cn/list=nf_" + sym, decode="gbk",
+                   referer="https://finance.sina.com.cn/")
+        m = re.search(r'="([^"]*)"', raw)
+        if not m:
+            return None
+        f = m.group(1).split(",")
+        if len(f) < 18:
+            return None
+        d = f[17].strip()
+        o, h, l, c = f[2], f[3], f[4], f[8]
+        if not re.match(r"^\d{4}-\d{2}-\d{2}$", d) or float(c) <= 0:
+            return None
+        return dict(date=d, open=o, high=h, low=l, close=c)
+    except Exception:
+        return None
+
+
 def fetch_sina(sym):
     url = ("https://stock2.finance.sina.com.cn/futures/api/jsonp.php/var%20t=/"
            "InnerFuturesNewService.getDailyKLine?symbol=" + sym)
@@ -96,6 +117,10 @@ def fetch_sina(sym):
     out = []
     for d in arr:
         out.append(dict(date=d["d"], open=d["o"], high=d["h"], low=d["l"], close=d["c"]))
+    # 실시간 오늘 바 추가(있으면). merge_ohlc 가 같은 날짜는 이걸로 갱신.
+    rt = fetch_sina_rt(sym)
+    if rt:
+        out.append(rt)
     return out
 
 
