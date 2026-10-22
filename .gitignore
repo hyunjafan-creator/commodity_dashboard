@@ -21,3 +21,7 @@ __pycache__/
 
 # ===== 사용자 제공 DB (대용량) - 필요시 주석 해제해 포함 =====
 # semiconductor_data.db
+
+# Local update lock and atomic-write staging
+.update.lock
+*.tmp

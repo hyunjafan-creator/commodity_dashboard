@@ -1,25 +1,12 @@
 @echo off
+setlocal
 chcp 65001 >nul
 cd /d "%~dp0"
-echo ============================================================
-echo   Updating Commodity Dashboard + uploading to web...
-echo   (takes 1-2 minutes; do NOT close this window)
-echo ============================================================
+powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%~dp0run_dashboard.ps1" %*
+set "RESULT=%ERRORLEVEL%"
 echo.
-echo ===== %DATE% %TIME% =====>> run.log
-py run.py
-echo.
-echo ------------------------------------------------------------
-echo   Uploading to GitHub (web dashboard)...
-echo ------------------------------------------------------------
-git add -A
-git commit -m "update dashboard" || echo (no changes to commit)
-git pull --no-edit -X ours origin main
-git push
-echo.
-echo ============================================================
-echo   [DONE]
-echo   Local :  Commodity_dashboard.html   (open, press F5)
-echo   Web   :  https://hyunjafan-creator.github.io/commodity_dashboard/
-echo ============================================================
+if "%RESULT%"=="0" echo [DONE] Latest local dashboard opened. Web deployment may take a few minutes.
+if "%RESULT%"=="2" echo [PARTIAL] Some sources need attention. See run.log and dashboard source dates.
+if "%RESULT%"=="1" echo [FAILED] Update or upload failed. See run.log for details.
 pause
+exit /b %RESULT%

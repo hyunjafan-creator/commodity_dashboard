@@ -12,7 +12,7 @@ import os
 import re
 import sys
 import urllib.request
-from datetime import datetime, date, timezone
+from datetime import datetime, date, timezone, timedelta
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "data")
@@ -25,7 +25,7 @@ UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
 
 
 def _get(url, decode="utf-8", referer=None):
-    headers = {"User-Agent": UA}
+    headers = {"User-Agent": UA, "Cache-Control": "no-cache"}
     if referer:
         headers["Referer"] = referer
     req = urllib.request.Request(url, headers=headers)
@@ -47,15 +47,18 @@ def read_rows(item_id):
 
 def write_rows(item_id, rows, fields):
     p = _path(item_id)
-    with open(p, "w", encoding="utf-8", newline="") as f:
+    with open(p + ".tmp", "w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fields)
         w.writeheader()
         for r in rows:
             w.writerow(r)
+    os.replace(p + ".tmp", p)
 
 
 def merge_ohlc(item_id, fetched):
     """fetched: list of dict(date,open,high,low,close). 날짜 기준 병합."""
+    if not fetched:
+        raise ValueError("No price rows returned; existing data preserved")
     by_date = {r["date"]: r for r in read_rows(item_id)}
     for r in fetched:
         by_date[r["date"]] = r
@@ -66,7 +69,7 @@ def merge_ohlc(item_id, fetched):
 
 def append_snapshot(item_id, value, fields=("date", "value")):
     """오늘 날짜 한 행 누적. 같은 날 재실행 시 갱신."""
-    today = date.today().isoformat()
+    today = datetime.now(timezone(timedelta(hours=9))).date().isoformat()
     by_date = {r["date"]: r for r in read_rows(item_id)}
     by_date[today] = {"date": today, "value": value}
     rows = [by_date[d] for d in sorted(by_date)]
@@ -76,7 +79,7 @@ def append_snapshot(item_id, value, fields=("date", "value")):
 
 def append_snapshot3(item_id, high, low, avg):
     """오늘 날짜에 High/Low/Avg 한 행 누적(date,high,low,avg)."""
-    today = date.today().isoformat()
+    today = datetime.now(timezone(timedelta(hours=9))).date().isoformat()
     by_date = {r["date"]: r for r in read_rows(item_id)}
     by_date[today] = {"date": today, "high": high, "low": low, "avg": avg}
     rows = [by_date[d] for d in sorted(by_date)]
@@ -156,7 +159,7 @@ def fetch_dram():
     pat_name = re.compile(r'<a[^>]*>(.*?)</a>', re.S)
     pat_gray = re.compile(r'tab_tr_gray[^>]*>\s*([0-9]+\.[0-9]+)\s*<')
     types = re.compile(r'(DDR3|DDR4|DDR5|GDDR\d?|LPDDR|TLC|MLC|SLC)', re.I)
-    today = date.today().isoformat()
+    today = datetime.now(timezone(timedelta(hours=9))).date().isoformat()
     found = {}
     for r in re.split(r"<tr", html):
         nm = pat_name.search(r)
@@ -169,6 +172,8 @@ def fetch_dram():
         vals = pat_gray.findall(r)
         if vals:
             found[name] = vals[-1]  # 대표값(평균) = 행의 마지막 gray 셀
+    if not found:
+        raise ValueError("DRAM price rows not found; existing data preserved")
     # long format 누적: data/dram.csv (date,product,value)
     rows = read_rows("dram")
     keyed = {(r["date"], r["product"]): r for r in rows}
@@ -184,7 +189,7 @@ import urllib.parse  # noqa: E402  (fetch_yahoo 에서 사용)
 
 def main():
     print(f"=== 수집 시작 {datetime.now().isoformat(timespec='seconds')} ===")
-    ok, fail = 0, 0
+    ok, fail, skipped = 0, 0, 0
     dram_state = {"done": False, "total": 0}  # DRAM 수집 1회만
     # 반도체 DB(semiconductor_data.db) 히스토리 백필 (idempotent)
     if any(it.get("src") == "dram" for it in ITEMS):
@@ -229,9 +234,11 @@ def main():
                 if not dram_state["done"]:
                     dram_state["total"] = fetch_dram()
                     dram_state["done"] = True
-                today = date.today().isoformat()
+                today = datetime.now(timezone(timedelta(hours=9))).date().isoformat()
                 cnt = sum(1 for r in read_rows("dram")
                           if r["date"] == today and re.search(it["match"], r["product"]))
+                if cnt == 0:
+                    raise ValueError("No matching DRAM products")
                 print(f"  [OK ] {it['id']:9} {it['name'][:22]:22} {cnt} products (snapshot)")
             elif it["src"] == "snap":
                 if it["id"] == "topcon":
@@ -248,7 +255,8 @@ def main():
                     else:
                         if not os.path.exists(_path(it["id"])):
                             write_rows(it["id"], [], ["date", "value"])
-                        print(f"  [SKIP] {it['id']:9} {it['name'][:22]:22} (세션 만료? login 재실행 필요)")
+                        fail += 1
+                        print(f"  [ERR] {it['id']:9} No new price; retained previous source date (session/browser check needed)")
                     continue
                 if it["id"] == "lipf6":
                     # 저장된 metal.com 세션으로 헤드리스 수집(재로그인 불필요)
@@ -265,8 +273,10 @@ def main():
                     else:
                         if not os.path.exists(_path(it["id"])):
                             write_rows(it["id"], [], ["date", "value"])
-                        print(f"  [SKIP] {it['id']:9} {it['name'][:22]:22} (세션 만료? login 재실행 필요)")
+                        fail += 1
+                        print(f"  [ERR] {it['id']:9} No new price; retained previous source date (session/browser check needed)")
                     continue
+                skipped += 1
                 # 기타 로그인/무료없음 소스: 자동수집 불가. 파일만 보장.
                 if not os.path.exists(_path(it["id"])):
                     write_rows(it["id"], [], ["date", "value"])
@@ -276,7 +286,8 @@ def main():
         except Exception as e:
             fail += 1
             print(f"  [ERR] {it['id']:9} {it['name'][:22]:22} {type(e).__name__}: {e}")
-    print(f"=== 수집 완료: 성공 {ok} / 실패 {fail} ===")
+    print(f"=== 수집 완료: 성공 {ok} / 실패 {fail} / 미연동 {skipped} ===")
+    return dict(ok=ok, fail=fail, skipped=skipped)
 
 
 if __name__ == "__main__":

@@ -8,6 +8,7 @@ data/*.csv 를 읽어 카테고리별 차트(최근 200영업일)를 가진 dash
 각 차트에 출처(source)를 명시한다. 표준 라이브러리만 사용.
 """
 import csv
+from html import escape
 import json
 import os
 import re
@@ -185,8 +186,9 @@ HTML = """<!DOCTYPE html>
 <body>
 <header>
   <h1>📊 원자재 대시보드</h1>
-  <div class="updated">🕒 마지막 업데이트 : __UPDATED__</div>
-  <div class="meta">차트 기간: 선물 최근 __WINDOW__영업일 · 반도체/희소금속 전체기간 · 매일 08·14·17시 자동 새로고침</div>
+  <div class="updated">화면 생성 : __UPDATED__</div>
+  <div class="meta">__HEALTH__</div>
+  <div class="meta">차트 기간: 선물 최근 __WINDOW__영업일 · 반도체/희소금속 전체기간 · 배치파일 실행 시 수집 · 화면은 30분마다 새로고침</div>
   <nav>__NAV__</nav>
 </header>
 __BODY__
@@ -257,6 +259,8 @@ def card_html(p):
             else f'<div class="chart" data-id="{p["id"]}"></div>')
 
     note = f'<div class="note">⚠ {p["note"]}</div>' if p["note"] else ""
+    if p.get("stale"):
+        note += '<div class="note">⚠ 최신 데이터 미확인: 위 기준일의 마지막 수집값입니다.</div>'
     return (f'<div class="card"><div class="top">'
             f'<div class="nm">{p["name"]}</div>{head}</div>'
             f'{body}'
@@ -273,6 +277,21 @@ def fmt_py(n):
 
 def build():
     payload = build_payload()
+    status_path = os.path.join(DATA, "update_status.json")
+    status = {}
+    if os.path.exists(status_path):
+        with open(status_path, encoding="utf-8") as f:
+            status = json.load(f)
+    today = datetime.now(timezone(timedelta(hours=9))).date()
+    for item in payload:
+        latest = item.get("last_date", "")
+        tolerance = 10 if item["id"] in ("eia_gas", "topcon") else 4
+        item["stale"] = not latest or (today - date.fromisoformat(latest)).days > tolerance
+    health = "수집 결과 미확인 · 각 카드의 가격 기준일을 확인하세요."
+    if status:
+        state = {"ok": "완료", "partial": "일부 실패", "failed": "실패"}.get(status.get("state"), "미확인")
+        health = (f"수집 {state} · 확인 시각 {status.get('finished_at', '')} · "
+                  f"성공 {status.get('ok', 0)} / 실패 {status.get('fail', 0)} / 미연동 {status.get('skipped', 0)}")
     by_cat = {c: [] for c in CATEGORIES}
     for p in payload:
         by_cat.setdefault(p["cat"], []).append(p)
@@ -290,6 +309,7 @@ def build():
     updated = _now.strftime(f"%Y년 %m월 %d일 ({_wd}) %H:%M:%S (KST)")
     html = (HTML
             .replace("__UPDATED__", updated)
+            .replace("__HEALTH__", escape(health))
             .replace("__WINDOW__", str(WINDOW))
             .replace("__NAV__", nav)
             .replace("__BODY__", "\n".join(body))
