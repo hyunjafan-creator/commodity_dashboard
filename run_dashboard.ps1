@@ -61,16 +61,17 @@ try {
         $env:GIT_TERMINAL_PROMPT = '0'
         $env:GCM_INTERACTIVE = 'never'
         # Stage only dashboard source and public price outputs, never browser sessions.
-        Invoke-Git -GitArgs @('add', '--', '*.py', '*.bat', '*.ps1', '*.html', 'README.md', '.gitignore', 'data/*.csv', 'data/update_status.json')
+        Invoke-Git -GitArgs @('add', '--', '*.py', '*.bat', '*.ps1', '*.html', 'README.md', '.gitignore', 'data/*.csv', 'data/update_status.json', '.github/workflows/update.yml')
         & git diff --cached --quiet
         if ($LASTEXITCODE -eq 1) {
             Invoke-Git -GitArgs @('commit', '-m', ('dashboard update ' + (Get-Date -Format 'yyyy-MM-dd HH:mm')))
         } elseif ($LASTEXITCODE -ne 0) { throw 'Cannot inspect staged changes.' }
         Invoke-Git -GitArgs @('fetch', 'origin', 'main')
-        & git merge-base --is-ancestor origin/main HEAD
-        if ($LASTEXITCODE -ne 0) {
-            throw 'Remote main has newer commits. Upload stopped to preserve local data; resolve the divergence first.'
-        }
+        $ErrorActionPreference = 'Continue'
+        & $pythonExe -u sync_remote.py 2>&1 | ForEach-Object { Log "$_" }
+        $syncExit = $LASTEXITCODE
+        $ErrorActionPreference = 'Stop'
+        if ($syncExit -ne 0) { throw 'Cloud price synchronization failed; upload stopped. See run.log.' }
         Invoke-Git -GitArgs @('push', 'origin', 'HEAD:main')
         Log 'PUSH OK. GitHub Pages deployment can take a few minutes.'
         Log ('Web: https://hyunjafan-creator.github.io/commodity_dashboard/?v=' + (Get-Date -Format 'yyyyMMddHHmmss'))
