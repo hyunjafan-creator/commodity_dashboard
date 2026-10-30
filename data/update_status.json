@@ -1,8 +1,8 @@
 {
-  "started_at": "2026-10-30T11:29:04+09:00",
-  "finished_at": "2026-10-30T11:30:34+09:00",
-  "ok": 39,
-  "fail": 3,
+  "started_at": "2026-10-30T20:12:58+09:00",
+  "finished_at": "2026-10-30T20:13:55+09:00",
+  "ok": 40,
+  "fail": 2,
   "skipped": 1,
   "items": [
     {
@@ -206,7 +206,7 @@
     {
       "id": "ni0",
       "name": "니켈 (Nickel, SHFE)",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
