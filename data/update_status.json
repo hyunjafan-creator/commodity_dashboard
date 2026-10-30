@@ -1,68 +1,68 @@
 {
-  "started_at": "2026-10-29T23:43:42+09:00",
-  "finished_at": "2026-10-29T23:44:29+09:00",
-  "ok": 40,
-  "fail": 2,
+  "started_at": "2026-10-30T11:29:04+09:00",
+  "finished_at": "2026-10-30T11:30:34+09:00",
+  "ok": 39,
+  "fail": 3,
   "skipped": 1,
   "items": [
     {
       "id": "dram_ddr3",
       "name": "DDR3 칩 현물가",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "dram_ddr4",
       "name": "DDR4 칩 현물가",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "dram_ddr5",
       "name": "DDR5 칩 현물가",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "dram_ddr4_mod",
       "name": "DDR4 모듈 (DIMM)",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "dram_ddr5_mod",
       "name": "DDR5 모듈 (DIMM)",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "dram_mlc",
       "name": "MLC NAND 현물가",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "dram_slc",
       "name": "SLC NAND 현물가",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "dram_tlc",
       "name": "TLC NAND 현물가",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "dram_gddr",
       "name": "GDDR 현물가",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "lc0",
       "name": "탄산리튬 (Lithium Carbonate)",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
@@ -74,37 +74,37 @@
     {
       "id": "copper",
       "name": "구리 (Copper)",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "alu",
       "name": "알루미늄 (Aluminum)",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "ni_bat",
       "name": "니켈 (Nickel)",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "wti",
       "name": "WTI 원유",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "natgas",
       "name": "천연가스 (Natural Gas)",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "rbob",
       "name": "가솔린 RBOB",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
@@ -122,13 +122,13 @@
     {
       "id": "jm0",
       "name": "코크스(코킹콜)",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "ps0",
       "name": "폴리실리콘 (Polysilicon)",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
@@ -140,67 +140,67 @@
     {
       "id": "sh0",
       "name": "가성소다 (Caustic Soda)",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "px0",
       "name": "파라자일렌 PX",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "v0",
       "name": "PVC",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "pp0",
       "name": "PP (폴리프로필렌)",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "br0",
       "name": "부타디엔 고무 (BR)",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "i0",
       "name": "철광석 (Iron Ore)",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "rb0",
       "name": "철근 (Rebar)",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "ss0",
       "name": "스테인리스 스틸",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "hc0",
       "name": "열연강판 (HRC)",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "ad0",
       "name": "주조 알루미늄 합금",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "sn0",
       "name": "주석 (Tin)",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
@@ -212,55 +212,55 @@
     {
       "id": "p0",
       "name": "팜유 (Palm Oil)",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "wheat",
       "name": "미국 소맥 (Wheat)",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "corn",
       "name": "미국 옥수수 (Corn)",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "soybean",
       "name": "미국 대두 (Soybeans)",
-      "latest_date": "2026-10-29",
+      "latest_date": "2026-10-30",
       "stale": false
     },
     {
       "id": "komis_w",
       "name": "텅스텐 (Ferro-tungsten 75%)",
-      "latest_date": "2026-10-28",
+      "latest_date": "2026-10-29",
       "stale": false
     },
     {
       "id": "komis_nd",
       "name": "네오디뮴 (Neodymium Oxide)",
-      "latest_date": "2026-10-28",
+      "latest_date": "2026-10-29",
       "stale": false
     },
     {
       "id": "komis_dy",
       "name": "디스프로슘 (Dysprosium Oxide)",
-      "latest_date": "2026-10-28",
+      "latest_date": "2026-10-29",
       "stale": false
     },
     {
       "id": "komis_ti",
       "name": "티타늄 (Ferro-titanium 70%)",
-      "latest_date": "2026-10-28",
+      "latest_date": "2026-10-29",
       "stale": false
     },
     {
       "id": "komis_mo",
       "name": "몰리브덴 (Ferro-molybdenum 60%)",
-      "latest_date": "2026-10-28",
+      "latest_date": "2026-10-29",
       "stale": false
     }
   ],
