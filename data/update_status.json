@@ -1,6 +1,6 @@
 {
-  "started_at": "2026-10-30T23:40:00+09:00",
-  "finished_at": "2026-10-30T23:40:53+09:00",
+  "started_at": "2026-10-31T11:12:05+09:00",
+  "finished_at": "2026-10-31T11:12:47+09:00",
   "ok": 40,
   "fail": 2,
   "skipped": 1,
@@ -8,55 +8,55 @@
     {
       "id": "dram_ddr3",
       "name": "DDR3 칩 현물가",
-      "latest_date": "2026-10-30",
+      "latest_date": "2026-10-31",
       "stale": false
     },
     {
       "id": "dram_ddr4",
       "name": "DDR4 칩 현물가",
-      "latest_date": "2026-10-30",
+      "latest_date": "2026-10-31",
       "stale": false
     },
     {
       "id": "dram_ddr5",
       "name": "DDR5 칩 현물가",
-      "latest_date": "2026-10-30",
+      "latest_date": "2026-10-31",
       "stale": false
     },
     {
       "id": "dram_ddr4_mod",
       "name": "DDR4 모듈 (DIMM)",
-      "latest_date": "2026-10-30",
+      "latest_date": "2026-10-31",
       "stale": false
     },
     {
       "id": "dram_ddr5_mod",
       "name": "DDR5 모듈 (DIMM)",
-      "latest_date": "2026-10-30",
+      "latest_date": "2026-10-31",
       "stale": false
     },
     {
       "id": "dram_mlc",
       "name": "MLC NAND 현물가",
-      "latest_date": "2026-10-30",
+      "latest_date": "2026-10-31",
       "stale": false
     },
     {
       "id": "dram_slc",
       "name": "SLC NAND 현물가",
-      "latest_date": "2026-10-30",
+      "latest_date": "2026-10-31",
       "stale": false
     },
     {
       "id": "dram_tlc",
       "name": "TLC NAND 현물가",
-      "latest_date": "2026-10-30",
+      "latest_date": "2026-10-31",
       "stale": false
     },
     {
       "id": "dram_gddr",
       "name": "GDDR 현물가",
-      "latest_date": "2026-10-30",
+      "latest_date": "2026-10-31",
       "stale": false
     },
     {
@@ -86,7 +86,7 @@
     {
       "id": "ni_bat",
       "name": "니켈 (Nickel)",
-      "latest_date": "2026-10-30",
+      "latest_date": "2026-10-31",
       "stale": false
     },
     {
@@ -182,7 +182,7 @@
     {
       "id": "ss0",
       "name": "스테인리스 스틸",
-      "latest_date": "2026-10-30",
+      "latest_date": "2026-10-31",
       "stale": false
     },
     {
@@ -194,19 +194,19 @@
     {
       "id": "ad0",
       "name": "주조 알루미늄 합금",
-      "latest_date": "2026-10-30",
+      "latest_date": "2026-10-31",
       "stale": false
     },
     {
       "id": "sn0",
       "name": "주석 (Tin)",
-      "latest_date": "2026-10-30",
+      "latest_date": "2026-10-31",
       "stale": false
     },
     {
       "id": "ni0",
       "name": "니켈 (Nickel, SHFE)",
-      "latest_date": "2026-10-30",
+      "latest_date": "2026-10-31",
       "stale": false
     },
     {
