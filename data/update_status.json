@@ -1,6 +1,6 @@
 {
-  "started_at": "2026-11-03T21:39:40+09:00",
-  "finished_at": "2026-11-03T21:41:20+09:00",
+  "started_at": "2026-11-04T00:34:06+09:00",
+  "finished_at": "2026-11-04T00:34:53+09:00",
   "ok": 40,
   "fail": 2,
   "skipped": 1,
@@ -8,55 +8,55 @@
     {
       "id": "dram_ddr3",
       "name": "DDR3 칩 현물가",
-      "latest_date": "2026-11-03",
+      "latest_date": "2026-11-04",
       "stale": false
     },
     {
       "id": "dram_ddr4",
       "name": "DDR4 칩 현물가",
-      "latest_date": "2026-11-03",
+      "latest_date": "2026-11-04",
       "stale": false
     },
     {
       "id": "dram_ddr5",
       "name": "DDR5 칩 현물가",
-      "latest_date": "2026-11-03",
+      "latest_date": "2026-11-04",
       "stale": false
     },
     {
       "id": "dram_ddr4_mod",
       "name": "DDR4 모듈 (DIMM)",
-      "latest_date": "2026-11-03",
+      "latest_date": "2026-11-04",
       "stale": false
     },
     {
       "id": "dram_ddr5_mod",
       "name": "DDR5 모듈 (DIMM)",
-      "latest_date": "2026-11-03",
+      "latest_date": "2026-11-04",
       "stale": false
     },
     {
       "id": "dram_mlc",
       "name": "MLC NAND 현물가",
-      "latest_date": "2026-11-03",
+      "latest_date": "2026-11-04",
       "stale": false
     },
     {
       "id": "dram_slc",
       "name": "SLC NAND 현물가",
-      "latest_date": "2026-11-03",
+      "latest_date": "2026-11-04",
       "stale": false
     },
     {
       "id": "dram_tlc",
       "name": "TLC NAND 현물가",
-      "latest_date": "2026-11-03",
+      "latest_date": "2026-11-04",
       "stale": false
     },
     {
       "id": "dram_gddr",
       "name": "GDDR 현물가",
-      "latest_date": "2026-11-03",
+      "latest_date": "2026-11-04",
       "stale": false
     },
     {
@@ -110,7 +110,7 @@
     {
       "id": "eia_gas",
       "name": "미국 소매 휘발유 (전등급, 주간)",
-      "latest_date": "2026-10-26",
+      "latest_date": "2026-11-02",
       "stale": false
     },
     {
