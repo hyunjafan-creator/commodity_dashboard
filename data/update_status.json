@@ -1,8 +1,8 @@
 {
-  "started_at": "2026-11-24T14:01:10+09:00",
-  "finished_at": "2026-11-24T14:03:10+09:00",
-  "ok": 41,
-  "fail": 1,
+  "started_at": "2026-11-24T15:52:21+09:00",
+  "finished_at": "2026-11-24T15:53:16+09:00",
+  "ok": 40,
+  "fail": 2,
   "skipped": 1,
   "items": [
     {
@@ -74,7 +74,7 @@
     {
       "id": "copper",
       "name": "구리 (Copper)",
-      "latest_date": "2026-11-23",
+      "latest_date": "2026-11-24",
       "stale": false
     },
     {
@@ -92,19 +92,19 @@
     {
       "id": "wti",
       "name": "WTI 원유",
-      "latest_date": "2026-11-23",
+      "latest_date": "2026-11-24",
       "stale": false
     },
     {
       "id": "natgas",
       "name": "천연가스 (Natural Gas)",
-      "latest_date": "2026-11-23",
+      "latest_date": "2026-11-24",
       "stale": false
     },
     {
       "id": "rbob",
       "name": "가솔린 RBOB",
-      "latest_date": "2026-11-23",
+      "latest_date": "2026-11-24",
       "stale": false
     },
     {
@@ -218,19 +218,19 @@
     {
       "id": "wheat",
       "name": "미국 소맥 (Wheat)",
-      "latest_date": "2026-11-23",
+      "latest_date": "2026-11-24",
       "stale": false
     },
     {
       "id": "corn",
       "name": "미국 옥수수 (Corn)",
-      "latest_date": "2026-11-23",
+      "latest_date": "2026-11-24",
       "stale": false
     },
     {
       "id": "soybean",
       "name": "미국 대두 (Soybeans)",
-      "latest_date": "2026-11-23",
+      "latest_date": "2026-11-24",
       "stale": false
     },
     {
