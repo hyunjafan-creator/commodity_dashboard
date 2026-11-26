@@ -1,6 +1,6 @@
 {
-  "started_at": "2026-11-26T13:50:52+09:00",
-  "finished_at": "2026-11-26T13:51:54+09:00",
+  "started_at": "2026-11-26T23:47:03+09:00",
+  "finished_at": "2026-11-26T23:48:02+09:00",
   "ok": 40,
   "fail": 2,
   "skipped": 1,
@@ -80,7 +80,7 @@
     {
       "id": "alu",
       "name": "알루미늄 (Aluminum)",
-      "latest_date": "2026-11-25",
+      "latest_date": "2026-11-26",
       "stale": false
     },
     {
