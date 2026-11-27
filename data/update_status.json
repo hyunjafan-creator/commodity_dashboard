@@ -1,6 +1,6 @@
 {
-  "started_at": "2026-11-27T13:53:30+09:00",
-  "finished_at": "2026-11-27T13:54:34+09:00",
+  "started_at": "2026-11-27T23:46:51+09:00",
+  "finished_at": "2026-11-27T23:47:50+09:00",
   "ok": 40,
   "fail": 2,
   "skipped": 1,
@@ -218,19 +218,19 @@
     {
       "id": "wheat",
       "name": "미국 소맥 (Wheat)",
-      "latest_date": "2026-11-25",
+      "latest_date": "2026-11-27",
       "stale": false
     },
     {
       "id": "corn",
       "name": "미국 옥수수 (Corn)",
-      "latest_date": "2026-11-25",
+      "latest_date": "2026-11-27",
       "stale": false
     },
     {
       "id": "soybean",
       "name": "미국 대두 (Soybeans)",
-      "latest_date": "2026-11-25",
+      "latest_date": "2026-11-27",
       "stale": false
     },
     {
